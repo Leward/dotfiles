@@ -22,6 +22,7 @@
       keepassx2
       ksystemlog
       okular
+      # touchegg
       unstable.openttd
       shutter
       spectacle
@@ -45,9 +46,18 @@
   programs.vscode = {
       enable = true;
       package = pkgs.vscode;
-      extensions = [
+      extensions = (with pkgs.vscode-extensions; [
           pkgs.vscode-extensions.bbenoist.Nix
-      ];
+      ]) ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [{
+          name = "gitlens";
+          publisher = "eamodio";
+          version = "10.2.1";
+          sha256 = "27b9d054690c0da3dc34e8e59077c7ede92ad9374a951ac93ae5440f84e606ae";
+      }];
+      userSettings = {
+        "keyboard.dispatch" = "keyCode";
+        "update.channel" = "none";
+      };
   };
 
   programs.fish = {
