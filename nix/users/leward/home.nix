@@ -46,14 +46,18 @@
   programs.vscode = {
       enable = true;
       package = pkgs.vscode;
-      extensions = (with pkgs.vscode-extensions; [
-          pkgs.vscode-extensions.bbenoist.Nix
-      ]) ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [{
-          name = "gitlens";
-          publisher = "eamodio";
-          version = "10.2.1";
-          sha256 = "27b9d054690c0da3dc34e8e59077c7ede92ad9374a951ac93ae5440f84e606ae";
-      }];
+
+      extensions = with pkgs.vscode-extensions; [
+          bbenoist.Nix
+      ] 
+      ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+        {
+          name = "java";
+          publisher = "redhat";
+          version = "0.61.0";
+          sha256 = "d64297fb96e42b184a580d3d7227dcdc7c90c287d22368e0b7dc78a63ffdd8d6";
+        }
+      ];
       userSettings = {
         "keyboard.dispatch" = "keyCode";
         "update.channel" = "none";
